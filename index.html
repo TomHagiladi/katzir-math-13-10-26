@@ -89,6 +89,18 @@ details ul{margin:.2rem 0 0;padding-inline-start:1.3rem}
 .paths b{display:block;color:var(--gd);margin-bottom:.2rem}
 .big{font-size:1.2rem;font-weight:800;color:var(--gd);margin-top:1rem}
 
+.part{border-radius:22px;padding:1.2rem clamp(.9rem,3vw,2rem) 1.6rem;margin-top:2rem}
+.part.students{background:#EAF4E0;border:2px solid #CFE3BC}
+.part.teachers{background:#FFF1DC;border:2px solid #F0D3A6}
+.part-title{display:flex;align-items:baseline;gap:.8rem;flex-wrap:wrap;padding-bottom:.6rem;border-bottom:3px solid rgba(0,0,0,.12)}
+.part-title b{font-size:clamp(1.4rem,3vw,1.9rem);font-weight:800;color:var(--ink)}
+.part-title span{font-weight:700;color:var(--soft)}
+.part section.exp{margin-top:0;padding-top:1.6rem}
+.part section.exp + section.exp{margin-top:2rem;border-top:4px dashed rgba(0,0,0,.18)}
+.part.teachers .role{background:#fff;color:#8A4B00}
+nav.toc a.te{background:#FFF1DC;border-color:#F0D3A6}
+nav.toc a.st{background:#EAF4E0;border-color:#CFE3BC}
+nav.toc a.te .n{background:#8A4B00}
 .toast{position:fixed;bottom:1.2rem;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:.6rem 1.3rem;border-radius:999px;font-weight:700;opacity:0;transition:opacity .25s;pointer-events:none;z-index:50}
 .toast.show{opacity:1}
 
@@ -115,11 +127,11 @@ footer{padding:1rem var(--pad) 2.5rem;color:var(--soft);font-size:.9rem}
 
 <nav class="toc" aria-label="ניווט בין ההתנסויות">
   <ul>
-    <li><a href="#e1"><span class="n" aria-hidden="true">1</span>שתי דרכים לבקש עזרה</a></li>
-    <li><a href="#e2"><span class="n" aria-hidden="true">2</span>הצעד הראשון</a></li>
-    <li><a href="#e3"><span class="n" aria-hidden="true">3</span>בעיה משלי</a></li>
-    <li><a href="#e4"><span class="n" aria-hidden="true">4</span>מתייעצים איך ללמד</a></li>
-    <li><a href="#e5"><span class="n" aria-hidden="true">5</span>ועכשיו המיומנויות</a></li>
+    <li><a class="st" href="#e1"><span class="n" aria-hidden="true">1</span>שתי דרכים לבקש עזרה</a></li>
+    <li><a class="st" href="#e2"><span class="n" aria-hidden="true">2</span>הצעד הראשון</a></li>
+    <li><a class="st" href="#e3"><span class="n" aria-hidden="true">3</span>בעיה משלי</a></li>
+    <li><a class="te" href="#e4"><span class="n" aria-hidden="true">4</span>מתייעצים איך ללמד</a></li>
+    <li><a class="te" href="#e5"><span class="n" aria-hidden="true">5</span>ועכשיו המיומנויות</a></li>
     <li><a href="#next">לקראת המפגש הבא</a></li>
   </ul>
 </nav>
@@ -139,6 +151,9 @@ footer{padding:1rem var(--pad) 2.5rem;color:var(--soft);font-size:.9rem}
     <li>לא מדביקים פרטים מזהים של תלמידים.</li>
   </ul>
 </section>
+
+<div class="part students">
+<p class="part-title"><b>חלק א: אתם התלמידים</b><span>התנסויות 1-3</span></p>
 
 <!-- ===== 1 ===== -->
 <section class="exp" id="e1" aria-labelledby="h-e1">
@@ -277,19 +292,23 @@ footer{padding:1rem var(--pad) 2.5rem;color:var(--soft);font-size:.9rem}
   </div>
 </section>
 
+</div>
+
+<div class="part teachers">
+<p class="part-title"><b>חלק ב: אתם המורים</b><span>התנסויות 4-5</span></p>
+
 <!-- ===== 4 ===== -->
 <section class="exp" id="e4" aria-labelledby="h-e4">
   <div class="exp-head"><span class="num" aria-hidden="true">4</span><h2 id="h-e4">מתייעצים איך ללמד</h2><span class="role">אתם המורים</span></div>
   <p class="lead">בחרו נושא שמעניין אתכם ושאתם מלמדים בשבועות הקרובים. לא חייב בעיות מילוליות. לא מבקשים מערך - חושבים יחד עם הבינה.</p>
   <div class="card good">
     <h3 class="p-title">שיחת התייעצות</h3>
-    <p class="explain">מבינים איפה התלמידים נתקעים, אוספים דרכים יצירתיות ללומדים שונים, ומחפשים איפה התלמידים יכולים ללמוד עם הבינה ולא דרכה.</p>
+    <p class="explain">אוספים דרכים יצירתיות ללמד את הנושא ללומדים שונים, ומחפשים איפה התלמידים יכולים ללמוד עם הבינה ולא דרכה.</p>
     <label class="sr-only" for="p-e4">הפרומפט להתייעצות איך ללמד</label>
     <textarea class="prompt" id="p-e4">אני מורה למתמטיקה בתיכון, ומלמד/ת כיתה [שכבה ורמה]. בשבועות הקרובים אני מלמד/ת [נושא]. התלמידים מתקשים ב[מה קשה להם].
 אל תכיני לי מערך. אני רוצה לחשוב איתך:
-1. מה קורה בראש של תלמיד שמתקשה בנושא הזה? איפה בדיוק הוא נתקע?
-2. הציעי 4 דרכים שונות ויצירתיות ללמד את זה, שמתאימות ללומדים שונים: תלמיד שמתקשה בקריאה, תלמיד שחושב בתמונות, תלמיד שנמנע מלהתחיל, ותלמיד מתקדם.
-3. איפה בנושא הזה התלמידים יכולים להשתמש בבינה כדי ללמוד, ולא כדי לקבל תשובה? הציעי דרך אחת כזו, עם פרומפט שאוכל לתת להם.
+1. הציעי 4 דרכים שונות ויצירתיות ללמד את זה, שמתאימות ללומדים שונים.
+2. איפה בנושא הזה התלמידים יכולים להשתמש בבינה כדי ללמוד, ולא כדי לקבל תשובה? הציעי דרך אחת כזו, עם פרומפט שאוכל לתת להם.
 אם חסר לך מידע על הכיתה, שאלי אותי עד 3 שאלות לפני שאת עונה.</textarea>
     <div class="row">
       <button class="btn" type="button" data-copy="p-e4">העתקה</button>
@@ -330,23 +349,49 @@ footer{padding:1rem var(--pad) 2.5rem;color:var(--soft);font-size:.9rem}
   <div class="exp-head"><span class="num" aria-hidden="true">5</span><h2 id="h-e5">ועכשיו המיומנויות</h2><span class="role">אתם המורים</span></div>
   <p class="lead">לפני שפותחים מחשב, דקה בזוג: כשאתם מתכננים שיעור, אתם בכלל חושבים על מיומנויות? ואז ממשיכים <b>באותה שיחה</b> של התנסות 4.</p>
   <div class="card good">
-    <h3 class="p-title">המיומנויות בשיעור</h3>
-    <p class="explain">הדביקו את כרטיס המיומנויות שלמטה, או העלו לשיחה את מסמך המיומנויות הבית ספרי, אם יש לכם.</p>
-    <label class="sr-only" for="p-e5">הפרומפט למיומנויות בשיעור</label>
+    <h3 class="p-title">המיומנויות בשיעור - שאלה אחת בכל פעם</h3>
+    <p class="explain">לא שופכים על הבינה את כל השאלות בבת אחת. פותחים בהקשר ובשאלה הראשונה, קוראים את התשובה, מגיבים, ורק אז ממשיכים לשאלה הבאה. אפשר גם להוסיף שאלות משלכם.</p>
+    <h4 class="qh">פתיחה: ההקשר והשאלה הראשונה</h4>
+    <p class="explain">מדביקים את כרטיס המיומנויות שלמטה, או מעלים לשיחה את מסמך המיומנויות הבית ספרי, אם יש לכם.</p>
+    <label class="sr-only" for="p-e5">פתיחה: ההקשר והשאלה הראשונה</label>
     <textarea class="prompt" id="p-e5">עכשיו נעבור למיומנויות. אלה המיומנויות שבית הספר שלנו מקדם השנה:
 [כאן מדביקים את כרטיס המיומנויות, או מעלים את מסמך המיומנויות הבית ספרי]
 
 וזה השיעור שאני מתכנן/ת, כולל הרעיון שבחרנו קודם:
 [תכנית השיעור או הנושא]
 
-1. אילו מיומנויות כבר באות לידי ביטוי בשיעור הזה, ואילו לא?
-2. בחרי מיומנות אחת או שתיים שהכי מתאימות לשיעור, והציעי איך לקדם אותן בפועל בתוך הפעילות, בלי להוסיף לשיעור עוד זמן.
-3. איך אוכל לדבר עם התלמידים על המיומנות הזו בהקשר של החומר, כך שיבינו מה הם מתרגלים ולמה זה חשוב להם?
-4. איך הדרך שבה התלמידים ישתמשו בבינה בשיעור הזה מקדמת את המיומנות, או פוגעת בה?
-5. איך אדע שהמיומנות באמת התפתחה ותורגלה, ולא רק שהתלמידים הגיעו לתשובה הנכונה? הציעי כרטיס יציאה של 3 שאלות קצרות.</textarea>
+נתחיל בשאלה אחת: אילו מיומנויות כבר באות לידי ביטוי בשיעור הזה, ואילו לא?</textarea>
     <div class="row">
       <button class="btn" type="button" data-copy="p-e5">העתקה</button>
       <button class="btn ghost" type="button" data-reset="p-e5">חזרה לנוסח המקורי</button>
+    </div>
+    <h4 class="qh">שאלה 2</h4>
+    <label class="sr-only" for="p-e5b">שאלה 2</label>
+    <textarea class="prompt" id="p-e5b">בחרי מיומנות אחת או שתיים שהכי מתאימות לשיעור, והציעי איך לקדם אותן בפועל בתוך הפעילות, בלי להוסיף לשיעור עוד זמן.</textarea>
+    <div class="row">
+      <button class="btn" type="button" data-copy="p-e5b">העתקה</button>
+      <button class="btn ghost" type="button" data-reset="p-e5b">חזרה לנוסח המקורי</button>
+    </div>
+    <h4 class="qh">שאלה 3</h4>
+    <label class="sr-only" for="p-e5c">שאלה 3</label>
+    <textarea class="prompt" id="p-e5c">איך אוכל לדבר עם התלמידים על המיומנות הזו בהקשר של החומר, כך שיבינו מה הם מתרגלים ולמה זה חשוב להם?</textarea>
+    <div class="row">
+      <button class="btn" type="button" data-copy="p-e5c">העתקה</button>
+      <button class="btn ghost" type="button" data-reset="p-e5c">חזרה לנוסח המקורי</button>
+    </div>
+    <h4 class="qh">שאלה 4</h4>
+    <label class="sr-only" for="p-e5d">שאלה 4</label>
+    <textarea class="prompt" id="p-e5d">איך הדרך שבה התלמידים ישתמשו בבינה בשיעור הזה מקדמת את המיומנות, או פוגעת בה?</textarea>
+    <div class="row">
+      <button class="btn" type="button" data-copy="p-e5d">העתקה</button>
+      <button class="btn ghost" type="button" data-reset="p-e5d">חזרה לנוסח המקורי</button>
+    </div>
+    <h4 class="qh">שאלה 5</h4>
+    <label class="sr-only" for="p-e5e">שאלה 5</label>
+    <textarea class="prompt" id="p-e5e">איך אדע שהמיומנות באמת התפתחה ותורגלה, ולא רק שהתלמידים הגיעו לתשובה הנכונה? הציעי כרטיס יציאה של 3 שאלות קצרות.</textarea>
+    <div class="row">
+      <button class="btn" type="button" data-copy="p-e5e">העתקה</button>
+      <button class="btn ghost" type="button" data-reset="p-e5e">חזרה לנוסח המקורי</button>
     </div>
   </div>
 
@@ -368,6 +413,8 @@ footer{padding:1rem var(--pad) 2.5rem;color:var(--soft);font-size:.9rem}
     </div>
   </div>
 </section>
+
+</div>
 
 <!-- ===== next ===== -->
 <section class="exp" id="next" aria-labelledby="h-next">

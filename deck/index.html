@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>לחשוב עם הבינה - קציר רחובות, צוות מתמטיקה, 13.10.2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@200;300;400;500;700;800&display=swap" rel="stylesheet">
+<style>
+/* ================= LOOK ================= */
+:root{
+  --accent:#75B743; --accent-dk:#5E9A28; --accent-pale:#EDF5E4; --accent-tint:#F5FAF0;
+  --accent-2:#AF242A; --ink:#4A4845; --muted:#7A7874; --paper:#FFFFFF; --line:#E2E7DB;
+  --sep-bg:#9ED174; --grey:#B9B6B0; --grey-pale:#F3F2F0;
+}
+h1{font-weight:800;font-size:62px;line-height:1.14;color:var(--accent-dk)}
+h2{font-weight:800;font-size:48px;line-height:1.2;margin-bottom:20px;color:var(--ink)}
+p,li{font-size:28px;line-height:1.55;font-weight:300}
+.huge{font-size:52px;line-height:1.3;font-weight:800}
+.big{font-size:40px;line-height:1.38;font-weight:300}
+.lead{font-size:32px;line-height:1.5}
+.dim{color:var(--muted)}
+.r{color:var(--accent-2);font-weight:700}
+.g{color:var(--accent-dk);font-weight:700}
+.kicker{font-size:19px;letter-spacing:2px;color:var(--accent-dk);font-weight:700;margin-bottom:8px}
+.kicker .tm{color:var(--accent-2);letter-spacing:0;margin-right:10px}
+.rule{width:76px;height:5px;background:var(--accent);margin:16px 0 20px;border-radius:3px}
+ul{list-style:none}
+ul.dots li{position:relative;padding-right:40px;margin:14px 0}
+ul.dots li:before{content:"";position:absolute;right:5px;top:17px;width:13px;height:13px;
+  border:3px solid var(--accent);transform:rotate(24deg);border-radius:2px}
+.cols{display:flex;gap:24px}
+.card{flex:1;background:#fff;border:1.5px solid var(--line);border-radius:10px;padding:20px 24px}
+.card h4{font-size:28px;font-weight:800;margin-bottom:8px;color:var(--accent-dk)}
+.card p{font-size:24px;line-height:1.45}
+.note{background:#FFF8E6;border-radius:8px;padding:14px 22px;font-size:25px;line-height:1.45;font-weight:300;border-right:6px solid #C98F00}
+.small{font-size:20px;color:var(--muted);font-weight:300}
+.logo-card{position:absolute;top:36px;left:60px;background:#fff;border-radius:10px;padding:10px 16px}
+.logo-card img{width:150px;display:block}
+/* separators */
+.slide.sep{background:var(--sep-bg);color:#fff}
+.slide.sep h2,.slide.sep .kicker,.slide.sep .agenda .it{-webkit-text-stroke:1px #1F1E1C;paint-order:stroke fill;text-shadow:0 1px 3px rgba(0,0,0,.3)}
+.slide.sep .kicker{color:#fff}
+.slide.sep .agenda .it{color:rgba(255,255,255,.9)} .slide.sep .agenda .it.act{color:#fff;font-weight:800}
+.agenda{display:flex;flex-direction:column;gap:12px;margin-top:4px}
+.agenda .it{display:flex;align-items:center;gap:20px;font-size:36px;color:var(--ink)}
+.agenda .it .n{font-size:20px;font-weight:800;min-width:38px}
+.slide.sep .agenda .it .n{color:#fff}
+.agenda .it.act:after{content:"";width:16px;height:16px;background:#fff;border:3px solid var(--accent-2);transform:rotate(24deg);border-radius:2px;margin-right:8px}
+.agenda .grp{font-size:20px;font-weight:700;color:#fff;margin-top:6px;-webkit-text-stroke:0;text-shadow:0 1px 2px rgba(0,0,0,.35)}
+.sq-art{position:absolute;left:70px;bottom:60px;width:400px;height:300px}
+.sq-art i{position:absolute;display:block;border-radius:6px}
+/* the mirror: nine squares */
+.nine{display:grid;grid-template-columns:repeat(3,96px);gap:26px;justify-content:center}
+.nine i{width:96px;height:96px;border-radius:12px;display:block;transform:rotate(14deg);background:var(--accent)}
+.nine i.odd{background:#fff;border:6px solid var(--accent-2)}
+/* insights */
+.insight{flex:1;border-radius:14px;padding:34px 34px;min-height:290px;border:2px solid var(--line);background:#fff}
+.insight .k{display:inline-block;font-size:20px;font-weight:800;color:#fff;background:var(--accent-dk);border-radius:30px;padding:3px 16px;margin-bottom:12px}
+.insight h4{font-size:42px;font-weight:800;line-height:1.25;color:var(--accent-dk);margin-bottom:10px}
+.insight p{font-size:29px;line-height:1.45}
+.insight.b .k{background:var(--accent-2)}
+/* process steps */
+.steps{display:flex;gap:14px;align-items:stretch}
+.step{flex:1;background:var(--accent-tint);border:1.5px solid var(--line);border-radius:10px;padding:22px 22px;position:relative;min-height:230px}
+.step .k{font-size:18px;font-weight:800;color:var(--accent-dk);letter-spacing:1px;margin-bottom:6px}
+.step p{font-size:28px;line-height:1.38}
+.step.hl{border:3px solid var(--accent-2);background:#fff}
+.arrow{font-size:30px;color:var(--accent);font-weight:800;align-self:center}
+/* pairs */
+.pairs{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.pc{background:#fff;border:1.5px solid var(--line);border-top:7px solid var(--accent);border-radius:10px;padding:22px 18px;text-align:center}
+.pc b{display:block;font-size:34px;font-weight:800;color:var(--ink);line-height:1.3}
+.pc span{display:block;font-size:22px;color:var(--muted);margin:2px 0}
+/* paths */
+.path{flex:1;border-radius:12px;padding:22px 26px;min-height:170px;border:2px solid var(--line)}
+.path h4{font-size:29px;font-weight:800;margin-bottom:8px}
+.path .q{font-size:26px;line-height:1.45;font-weight:400}
+.path .s{font-size:23px;margin-top:10px;line-height:1.4}
+.path.short{background:var(--grey-pale)} .path.short h4{color:var(--muted)}
+.path.think{background:var(--accent-tint);border-color:var(--accent)} .path.think h4{color:var(--accent-dk)}
+/* QR */
+.qrcol{width:250px;flex:none;display:flex;flex-direction:column;align-items:center;gap:8px;align-self:center}
+.qrbox{background:#fff;border:2px solid var(--line);border-radius:12px;padding:10px}
+.qrbox img{display:block;width:100%}
+.qrcol p{font-size:20px;text-align:center;line-height:1.3;font-weight:500}
+.url{direction:ltr;unicode-bidi:isolate;text-align:center;line-height:1.3;font-size:15px;color:var(--muted);font-weight:400}
+/* question columns */
+.qcol{flex:1;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:26px 24px;min-height:250px;display:flex;flex-direction:column;gap:10px;border-top:7px solid var(--accent)}
+.qcol .n{font-size:24px;font-weight:800;color:var(--accent-2)}
+.qcol p{font-size:31px;line-height:1.4;font-weight:500}
+/* staircase */
+.stair{position:relative;width:420px;height:300px}
+.stair i{position:absolute;bottom:0;width:100px;background:var(--accent-pale);border:3px solid var(--accent);border-bottom:0;border-radius:6px 6px 0 0}
+.stair b{position:absolute;font-size:20px;font-weight:700;color:var(--accent-dk);width:100px;text-align:center}
+/* chat mock */
+.chat{display:flex;flex-direction:column;gap:12px}
+.bub{border-radius:18px;padding:12px 18px;font-size:22px;line-height:1.42;max-width:94%}
+.bub.me{background:var(--accent-pale);align-self:flex-start;border-bottom-right-radius:4px}
+.bub.ai{background:var(--grey-pale);align-self:flex-end;border-bottom-left-radius:4px}
+.bub small{display:block;font-size:15px;color:var(--muted);margin-bottom:2px;font-weight:500}
+/* objection */
+.obj{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.oc{background:#fff;border:1.5px solid var(--line);border-right:7px solid var(--accent);border-radius:10px;padding:22px 26px;min-height:240px}
+.oc .n{font-size:20px;font-weight:800;color:var(--accent-2)}
+.oc h4{font-size:31px;font-weight:800;color:var(--accent-dk);line-height:1.25;margin:2px 0 4px}
+.oc p{font-size:25px;line-height:1.42}
+/* five questions */
+.grid5{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.fc{background:var(--accent-tint);border:1.5px solid var(--line);border-radius:10px;padding:20px 18px;min-height:300px}
+.fc .k{font-size:20px;font-weight:800;color:var(--accent-2);margin-bottom:6px}
+.fc p{font-size:27px;line-height:1.38;font-weight:500}
+/* closing paths */
+.np{flex:1;background:#fff;border:1.5px solid var(--line);border-top:7px solid var(--accent);border-radius:10px;padding:26px 26px;min-height:250px}
+.np h4{font-size:34px;font-weight:800;color:var(--accent-dk);margin-bottom:8px;line-height:1.25}
+.np p{font-size:27px;line-height:1.42}
+
+/* agenda card on separator slides */
+.agcard{background:#fff;border-radius:14px;padding:18px 26px;max-width:760px;box-shadow:0 10px 30px rgba(0,0,0,.12);color:var(--ink)}
+.agcard .grp{font-size:18px;font-weight:800;color:var(--accent-2);letter-spacing:1px;margin:6px 0 2px}
+.agcard .ai{display:flex;gap:16px;align-items:flex-start;padding:7px 0;border-bottom:1px solid var(--line)}
+.agcard .ai:last-child{border-bottom:0}
+.agcard .ai .n{font-size:19px;font-weight:800;color:var(--accent);min-width:30px;padding-top:6px}
+.agcard .ai b{display:block;font-size:28px;font-weight:800;line-height:1.25;color:var(--ink)}
+.agcard .ai span.d{display:block;font-size:20px;line-height:1.35;color:var(--muted);font-weight:400}
+.agcard .ai.act b{color:var(--accent-2)}
+.agcard .ai.act .n{color:var(--accent-2)}
+/* where-on-the-page label under the QR */
+.where{display:flex;flex-direction:column;align-items:center;background:var(--accent-dk);color:#fff;border-radius:12px;padding:8px 14px;width:100%}
+.where span{font-size:17px;font-weight:500}
+.where b{font-size:30px;font-weight:800;line-height:1.15}
+.qrcol{border-right:3px solid var(--line);padding-right:24px}
+/* pairs with shared theme */
+.pc i{display:block;font-style:normal;font-size:19px;line-height:1.3;color:var(--accent-dk);font-weight:700;margin-top:10px}
+
+/* ================= MECHANICS ================= */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:#2E2D2A;overflow:hidden;font-family:'Heebo',Arial,sans-serif}
+#stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+#deck{width:1280px;height:720px;flex:0 0 1280px;position:relative;transform-origin:center center;
+  overflow:hidden;background:var(--paper);box-shadow:0 24px 80px rgba(0,0,0,.55)}
+.slide{position:absolute;inset:0;padding:46px 70px;display:none;flex-direction:column;
+  background:var(--paper);color:var(--ink);overflow:hidden}
+.slide.on{display:flex}
+.split{display:flex;gap:44px;flex:1;min-height:0;align-items:center}
+.split>.tx{flex:1.15;min-width:0}
+.split>.im{flex:1;min-width:0;align-self:stretch;display:flex;align-items:center;justify-content:center}
+.split>.im img{max-width:100%;max-height:100%;object-fit:contain}
+.mid{justify-content:center;text-align:center;align-items:center}
+.fill{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center}
+.title-wrap{flex:1;display:flex;flex-direction:column;justify-content:center}
+.f{opacity:0;transform:translateY(9px);transition:opacity .3s ease,transform .3s ease}
+.f.vis{opacity:1;transform:none}
+#bar{position:fixed;bottom:0;right:0;height:4px;background:var(--accent);transition:width .25s ease;z-index:9}
+#num{position:fixed;bottom:14px;left:20px;color:#8d8b86;font-size:13px;letter-spacing:1px;z-index:9}
+#help{position:fixed;bottom:14px;right:20px;color:#75736e;font-size:12px;z-index:9}
+</style>
+</head>
+<body>
+<div id="stage"><div id="deck">
+
+<!-- 1 title -->
+<section class="slide mid">
+  <div class="title-wrap" style="align-items:center;text-align:center">
+    <img src="assets/logo-1400.png" alt="תום הגלעדי" style="width:360px;margin-bottom:26px">
+    <h1>לחשוב עם הבינה,<br>לא לתת לה לחשוב במקומנו</h1>
+    <div class="rule" style="margin:22px auto"></div>
+    <p class="lead dim">בינה מלאכותית ככלי ל<span class="r">חשיבה</span>, ל<span class="r">למידה</span> ולקידום <span class="r">מיומנויות</span></p>
+    <p class="f" style="margin-top:26px;font-size:24px">תום הגלעדי<br><span class="dim">צוות מתמטיקה &middot; קריית חינוך קציר רחובות &middot; 13.10.2026</span></p>
+  </div>
+</section>
+
+<!-- 2 bio -->
+<section class="slide">
+  <h2>נעים להכיר</h2>
+  <div class="split" style="align-items:flex-start">
+    <div class="tx">
+      <ul class="dots">
+        <li class="f" data-step="1" style="font-size:25px"><b>עשרים שנה כאיש חינוך,</b> חלקן בניהול מערכות חינוך: הקמה וניהול בית ספר, סגן מנהל פסג"ה תל אביב-יפו, אחראי פן חברתי-רגשי במדעני העתיד</li>
+        <li class="f" data-step="2" style="font-size:25px"><b>שלוש השנים האחרונות:</b> רק הממשק שבין בינה מלאכותית לארגוני למידה והוראה - משרד החינוך, האקדמיה, וליווי התייעלות במגזר העסקי</li>
+        <li class="f" data-step="3" style="font-size:25px"><b>מנחה הפודקאסט "דיבורי בינה",</b> מנהל את קהילת "בינה מלאכותית בחינוך ובאקדמיה", וכותב יחד עם פרופ' אמנון גלסנר את "אהבת למידה וחדוות גילוי"</li>
+        <li class="f" data-step="4" style="font-size:25px"><b>ובקציר:</b> בשנה שעברה, סדרת מפגשים בשתי קבוצות של מורים</li>
+      </ul>
+    </div>
+    <div class="im" style="flex:.85;flex-wrap:wrap;gap:16px;align-content:center;align-self:center">
+      <img class="f" data-step="1" src="assets/pull/bio-d.png" alt="בית ספר שורשים" style="height:110px;border-radius:6px;border:1px solid var(--line)">
+      <img class="f" data-step="1" src="assets/pull/bio-b.png" alt="מרכז פסג&quot;ה תל אביב-יפו" style="height:100px;border-radius:6px;border:1px solid var(--line)">
+      <img class="f" data-step="1" src="assets/pull/bio-c.jpg" alt="מדעני העתיד" style="height:110px;border-radius:6px;border:1px solid var(--line)">
+      <img class="f" data-step="3" src="assets/pull/bio-a.png" alt="הפודקאסט דיבורי בינה" style="height:130px;border-radius:6px;border:1px solid var(--line)">
+      <img class="f" data-step="3" src="assets/pull/bio-e.png" alt="קהילת בינה מלאכותית בחינוך ובאקדמיה" style="height:110px;border-radius:6px;border:1px solid var(--line)">
+      <img class="f" data-step="3" src="assets/pull/bio-community.png" alt="הספר אהבת למידה וחדוות גילוי" style="height:170px;border-radius:6px;border:1px solid var(--line)">
+    </div>
+  </div>
+</section>
+
+<!-- 3 the mirror -->
+<section class="slide">
+  <div class="kicker">מה כתבתם בשאלון</div>
+  <h2>שאלנו: איפה התלמידים נתקעים?</h2>
+  <div class="split">
+    <div class="tx">
+      <p class="huge" style="color:var(--accent-dk);font-size:76px;line-height:1.1">8 מתוך 9</p>
+      <p class="lead" style="margin-top:12px">כתבו: <span class="r">הבנת הנקרא</span>, <span class="r">חילוץ נתונים</span>, תרגום לשפה מתמטית.</p>
+      <p class="f" style="margin-top:14px;font-size:28px">ועוד: "מאיפה בכלל מתחילים?"</p>
+      <p class="f big" style="margin-top:26px;font-weight:500"><span class="r">שאלה:</span> מה קורה היום, כשתלמיד נתקע בבעיה מילולית ופותח צ'אט?</p>
+    </div>
+    <div class="im">
+      <div class="nine" aria-label="שמונה מתוך תשעה">
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="odd"></i>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 two insights -->
+<section class="slide" style="justify-content:center">
+  <div class="kicker">שני רעיונות שילוו אותנו היום</div>
+  <h2>על מה המפגש הזה</h2>
+  <div class="cols" style="align-items:stretch">
+    <div class="insight f">
+      <span class="k">רעיון ראשון</span>
+      <h4>בינה מלאכותית ככלי לחשיבה וללמידה</h4>
+      <p>ולא ככלי להעתקה, ולהאצלת החשיבה למכונה.</p>
+    </div>
+    <div class="insight b f">
+      <span class="k">רעיון שני</span>
+      <h4>בינה מלאכותית ככלי לקידום מיומנויות</h4>
+      <p>מה הקשר בין הבינה בתהליכי למידה, לבין המיומנויות שבית הספר בחר?</p>
+    </div>
+  </div>
+  <p class="f big" style="margin-top:34px;text-align:center">מיומנות מתפתחת רק כשה<span class="r">חשיבה</span> נשארת אצל הלומד.</p>
+</section>
+
+<!-- 5 the process -->
+<section class="slide" style="justify-content:center">
+  <h2>התהליך של צוות המתמטיקה השנה</h2>
+  <div class="steps" style="margin-top:14px">
+    <div class="step hl"><div class="k">היום</div><p>מפגש ראשון: מתנסים, ומתכננים משהו לכיתה</p></div>
+    <div class="arrow">&larr;</div>
+    <div class="step f"><div class="k">בכיתה</div><p>מנסים את מה שתכננו, ואוספים עדויות</p></div>
+    <div class="arrow">&larr;</div>
+    <div class="step f"><div class="k">מפגש שני</div><p>חוזרים עם ניסיון אמיתי, ומעמיקים</p></div>
+    <div class="arrow">&larr;</div>
+    <div class="step f"><div class="k">יום שיא</div><p>מציגים לכל הצוותים בבית הספר</p></div>
+  </div>
+  <p class="f" style="margin-top:34px;font-size:30px">מירי מלווה אתכם לאורך כל הדרך. ומה שתנסו בכיתה, <span class="r">הוא</span> עבודת הסיכום.</p>
+  <p class="f big" style="margin-top:18px;font-weight:500">בשנה שעברה למדנו כלים. השנה: <span class="g">דרך חשיבה.</span></p>
+</section>
+
+<!-- 6 agenda -->
+<section class="slide sep">
+  <div class="logo-card"><img src="assets/logo-1400.png" alt=""></div>
+  <div class="sq-art" aria-hidden="true">
+    <i style="width:150px;height:150px;left:40px;top:40px;background:#fff;opacity:.9;transform:rotate(24deg)"></i>
+    <i style="width:96px;height:96px;left:230px;top:10px;background:var(--accent-2);transform:rotate(-14deg)"></i>
+    <i style="width:120px;height:120px;left:210px;top:150px;border:10px solid #fff;transform:rotate(38deg)"></i>
+    <i style="width:64px;height:64px;left:20px;top:220px;background:#5E9A28;transform:rotate(12deg)"></i>
+  </div>
+  <div class="kicker">חמש התנסויות</div>
+  <h2 style="color:#fff;margin-bottom:14px">מה נעשה היום</h2>
+  <div class="agcard">
+    <div class="grp">אתם התלמידים</div>
+    <div class="ai act"><span class="n">01</span><div><b>שתי דרכים לבקש עזרה</b><span class="d">מבקשים מהבינה עזרה בבעיה: פעם כמו שתלמידים עושים היום, ופעם כמו ממורה פרטית. ומשווים.</span></div></div>
+    <div class="ai"><span class="n">02</span><div><b>הצעד הראשון</b><span class="d">הבינה כמדרגת עזר לתלמיד שלא ניגש לשאלה בכלל.</span></div></div>
+    <div class="ai"><span class="n">03</span><div><b>בעיה משלי</b><span class="d">הבינה מראיינת את התלמיד וכותבת לו בעיה אישית, כדי לעורר את הרצון לפתור.</span></div></div>
+    <div class="grp">אתם המורים</div>
+    <div class="ai"><span class="n">04</span><div><b>מתייעצים איך ללמד</b><span class="d">בוחרים נושא, וחושבים עם הבינה על דרכים יצירתיות ללמד אותו.</span></div></div>
+    <div class="ai"><span class="n">05</span><div><b>ועכשיו המיומנויות</b><span class="d">באותה שיחה: אילו מיומנויות השיעור מקדם, ואיך נדע שתורגלו.</span></div></div>
+  </div>
+</section>
+
+<!-- 7 pairs -->
+<section class="slide">
+  <h2 style="margin-bottom:10px">עובדים בזוגות</h2>
+  <p style="font-size:26px;margin-bottom:20px"><b>הרציונל:</b> לפי מה שכתבתם בשאלון. כל זוג תיאר <span class="r">נקודת תקיעה דומה</span> אצל התלמידים, כדי שיהיה לכם על מה לחשוב יחד.</p>
+  <div class="pairs">
+    <div class="pc"><b>שירלי</b><span>ו</span><b>גבי</b><i>חילוץ נתונים מבעיה מילולית</i></div>
+    <div class="pc"><b>יונתן</b><span>ו</span><b>מרינה</b><i>חילוץ נתונים, נימוק וסקיצה</i></div>
+    <div class="pc"><b>אורי</b><span>ו</span><b>ליאור</b><i>פירוק הבעיה והבנת ההוראות</i></div>
+    <div class="pc"><b>לילך</b><span>ו</span><b>אלה</b><i>טריגונומטריה ומעגל היחידה</i></div>
+  </div>
+  <p style="font-size:26px;margin-top:18px;text-align:center"><b>רעות</b> - מב"ר, "מאיפה מתחילים": לבד, או מצטרפת לזוג לבחירתה</p>
+  <div class="note f" style="margin-top:auto;text-align:center;font-size:27px">אפשר גם לעבוד לבד, או בשלישייה. <b>ההמלצה שלי: בזוג.</b></div>
+</section>
+
+<!-- 8 experience 1 -->
+<section class="slide">
+  <div class="kicker">התנסות 1 &middot; אתם התלמידים <span class="tm">כ-10 דקות</span></div>
+  <h2 style="margin-bottom:12px">שתי דרכים לבקש עזרה</h2>
+  <div style="display:flex;gap:28px;flex:1;min-height:0">
+    <div style="flex:1;display:flex;flex-direction:column;gap:14px;min-width:0">
+      <p class="f" style="font-size:28px">קחו בעיה מילולית שהבאתם. אין? חפשו ברשת בעיה מילולית, או כל בעיה אחרת.</p>
+      <div class="cols" style="align-items:stretch">
+        <div class="path short f">
+          <h4>דרך א: כמו היום</h4>
+          <p class="q">"חלצי לי את הנתונים מהבעיה ופתרי אותה."</p>
+        </div>
+        <div class="path think f">
+          <h4>דרך ב: המורה הפרטית</h4>
+          <p class="q">"למדי אותי איך מחלצים נתונים, צעד אחר צעד. אל תפתרי במקומי."</p>
+          <p class="s">שחקו תלמיד מתקשה. מותר לטעות בכוונה.</p>
+        </div>
+      </div>
+      <div class="note f" style="font-size:25px">לא עובד מספיק טוב? <b>שפרו את הפרומפט ונסו שוב</b>, עד שתגיעו לנוסח שעובד הכי טוב.</div>
+      <p class="f" style="font-size:31px;font-weight:500">ואז בזוג: <span class="r">מי עשה את החשיבה?</span></p>
+    </div>
+    <div class="qrcol f">
+      <div class="qrbox"><img src="assets/qr-app.png" alt="ברקוד לדף ההתנסויות"></div>
+      <div class="where"><span>בדף ההתנסויות:</span><b>התנסות 1</b></div>
+      <span class="url">tomhagiladi.github.io/<br>katzir-math-13-10-26</span>
+    </div>
+  </div>
+</section>
+
+<!-- 9 debrief 1 -->
+<section class="slide" style="justify-content:center">
+  <div class="kicker">אחרי התנסות 1</div>
+  <h2>מה גילינו?</h2>
+  <div class="cols" style="align-items:stretch">
+    <div class="qcol f"><span class="n">01</span><p>מה "התלמיד" עשה בשיחה הראשונה? ומה בשנייה?</p></div>
+    <div class="qcol f"><span class="n">02</span><p>איזו מיומנות תורגלה בשנייה, ודולגה בראשונה?</p></div>
+    <div class="qcol f"><span class="n">03</span><p>הבינה "החליקה" ונתנה תשובה? מה שיניתם בפרומפט?</p></div>
+  </div>
+  <p class="f big" style="margin-top:30px;text-align:center">אותו כלי. בדרך א' המיומנות <span class="r">דולגה</span>. בדרך ב' היא <span class="g">תורגלה</span>.</p>
+</section>
+
+<!-- 10 experience 2 -->
+<section class="slide">
+  <div class="kicker">התנסות 2 &middot; אתם התלמידים <span class="tm">כ-7 דקות</span></div>
+  <h2 style="margin-bottom:14px">הצעד הראשון</h2>
+  <div style="display:flex;gap:30px;flex:1;min-height:0;align-items:center">
+    <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:18px">
+      <p class="big" style="font-weight:500;color:var(--accent-dk)">"מתבוננים בשאלה ולא ניגשים לענות. נמנעים."</p>
+      <p class="f" style="font-size:27px">עכשיו אתם התלמיד הזה. בחרו בעיה שנראית לכם <span class="r">מאיימת</span>.</p>
+      <p class="f" style="font-size:27px">הבינה כמדרגת עזר: צעד קטן אחד בכל פעם, בלי פתרון, ועם משוב על מה שעשיתם נכון.</p>
+    </div>
+    <div class="stair" aria-hidden="true" style="width:340px;flex:none">
+      <i style="right:0;height:70px"></i><b style="right:0;bottom:80px">צעד 1</b>
+      <i style="right:110px;height:140px"></i><b style="right:110px;bottom:150px">צעד 2</b>
+      <i style="right:220px;height:210px"></i><b style="right:220px;bottom:220px">צעד 3</b>
+    </div>
+    <div class="qrcol f" style="width:200px">
+      <div class="qrbox"><img src="assets/qr-app.png" alt="ברקוד לדף ההתנסויות"></div>
+      <div class="where"><span>בדף:</span><b>התנסות 2</b></div>
+    </div>
+  </div>
+</section>
+
+<!-- 11 debrief 2 -->
+<section class="slide" style="justify-content:center">
+  <div class="kicker">אחרי התנסות 2</div>
+  <h2>קביים, או תלות?</h2>
+  <ul class="dots" style="margin-top:10px">
+    <li class="f" style="font-size:34px">איך הרגיש לקבל צעד אחד קטן בכל פעם?</li>
+    <li class="f" style="font-size:34px">מתי קביים כאלה עוזרים, ומתי הם הופכים לתלות?</li>
+    <li class="f" style="font-size:34px">איך מורידים אותם בהדרגה?</li>
+  </ul>
+  <div class="note f" style="margin-top:22px;font-size:28px">ובכיתה בלי מכשירים: המורה מפעיל את הפרומפט מהמקרן, והכיתה כולה משחקת את התלמיד.</div>
+  <p class="f big" style="margin-top:24px;font-weight:500">המטרה: שבפעם הבאה הוא יזכור <span class="g">לבד</span> מאיפה מתחילים.</p>
+</section>
+
+<!-- 12 the objection -->
+<section class="slide" style="justify-content:center">
+  <h2 style="margin-bottom:16px">"אבל התלמידים שלנו פשוט <span class="r">יבקשו פתרון</span>"</h2>
+  <div class="obj">
+    <div class="oc f"><span class="n">01</span><h4>אולי אנחנו מקדימים לשפוט</h4><p>נפתח בפניהם את הדלת, ונלווה אותם בפיתוח לומד עצמאי עם בינה. לפחות חלקם ייקחו את ההזדמנות.</p></div>
+    <div class="oc f"><span class="n">02</span><h4>הבינה יכולה לעורר מוטיבציה</h4><p>למשל, לראיין את התלמיד ולכתוב לו בעיה אישית משלו. נתנסה בזה עכשיו.</p></div>
+    <div class="oc f"><span class="n">03</span><h4>להעריך את מה שנלמד, לא את התשובה</h4><p>התלמיד מדווח מה הוא מבין ויודע לעשות עכשיו לבד, ומראה את זה על שאלה חדשה.</p></div>
+    <div class="oc f"><span class="n">04</span><h4>ללמוד עם בינה זו מיומנות</h4><p>וכמו כל מיומנות, צריך ללמד אותה. היא לא תופיע מעצמה.</p></div>
+  </div>
+</section>
+
+<!-- 13 experience 3 -->
+<section class="slide">
+  <div class="kicker">התנסות 3 &middot; אתם התלמידים <span class="tm">כ-7 דקות</span></div>
+  <h2 style="margin-bottom:14px">בעיה משלי</h2>
+  <div style="display:flex;gap:30px;flex:1;min-height:0">
+    <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:16px">
+      <p style="font-size:27px">הבינה מראיינת אתכם על מה שאתם אוהבים, וכותבת לכם <span class="r">בעיה מילולית אישית</span> בנושא הנלמד. משם - המורה הפרטית.</p>
+      <p class="f" style="font-size:27px">בזוג: האם בעיה "עליכם" שינתה משהו ברצון לפתור?</p>
+      <p class="f small" style="font-size:22px">מי שמסיים: בדף, התנסות 3ב - לחשוב עם הבינה על דרכים להגביר מוטיבציה.</p>
+    </div>
+    <div class="chat" style="flex:1.05;min-width:0;justify-content:center">
+      <div class="bub ai"><small>הבינה</small>מה את/ה אוהב/ת לעשות אחרי בית הספר?</div>
+      <div class="bub me"><small>התלמיד</small>משחק כדורגל.</div>
+      <div class="bub ai"><small>הבינה</small>הנה הבעיה שלך: אתה רץ עם הכדור לעבר השער, 6 מטרים בשנייה. שחקן הגנה יוצא אחריך כעבור 2 שניות, 8 מטרים בשנייה. כעבור כמה שניות הוא ישיג אותך?</div>
+    </div>
+    <div class="qrcol f" style="width:190px">
+      <div class="qrbox"><img src="assets/qr-app.png" alt="ברקוד לדף ההתנסויות"></div>
+      <div class="where"><span>בדף:</span><b>התנסות 3</b></div>
+    </div>
+  </div>
+</section>
+
+<!-- 14 separator: now you are the teachers -->
+<section class="slide sep">
+  <div class="logo-card"><img src="assets/logo-1400.png" alt=""></div>
+  <div class="sq-art" aria-hidden="true">
+    <i style="width:150px;height:150px;left:40px;top:40px;background:#fff;opacity:.9;transform:rotate(24deg)"></i>
+    <i style="width:96px;height:96px;left:230px;top:10px;background:var(--accent-2);transform:rotate(-14deg)"></i>
+    <i style="width:120px;height:120px;left:210px;top:150px;border:10px solid #fff;transform:rotate(38deg)"></i>
+    <i style="width:64px;height:64px;left:20px;top:220px;background:#5E9A28;transform:rotate(12deg)"></i>
+  </div>
+  <div class="kicker">מחליפים כובע</div>
+  <h2 style="color:#fff;margin-bottom:14px">עכשיו אתם המורים</h2>
+  <div class="agcard">
+    <div class="grp">אתם התלמידים</div>
+    <div class="ai"><span class="n">01</span><div><b>שתי דרכים לבקש עזרה</b><span class="d">מבקשים מהבינה עזרה בבעיה: פעם כמו שתלמידים עושים היום, ופעם כמו ממורה פרטית. ומשווים.</span></div></div>
+    <div class="ai"><span class="n">02</span><div><b>הצעד הראשון</b><span class="d">הבינה כמדרגת עזר לתלמיד שלא ניגש לשאלה בכלל.</span></div></div>
+    <div class="ai"><span class="n">03</span><div><b>בעיה משלי</b><span class="d">הבינה מראיינת את התלמיד וכותבת לו בעיה אישית, כדי לעורר את הרצון לפתור.</span></div></div>
+    <div class="grp">אתם המורים</div>
+    <div class="ai act"><span class="n">04</span><div><b>מתייעצים איך ללמד</b><span class="d">בוחרים נושא, וחושבים עם הבינה על דרכים יצירתיות ללמד אותו.</span></div></div>
+    <div class="ai"><span class="n">05</span><div><b>ועכשיו המיומנויות</b><span class="d">באותה שיחה: אילו מיומנויות השיעור מקדם, ואיך נדע שתורגלו.</span></div></div>
+  </div>
+</section>
+
+<!-- 15 experience 4 -->
+<section class="slide">
+  <div class="kicker">התנסות 4 &middot; אתם המורים <span class="tm">כ-12 דקות</span></div>
+  <h2 style="margin-bottom:12px">מתייעצים איך ללמד</h2>
+  <div style="display:flex;gap:28px;flex:1;min-height:0">
+    <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:16px">
+      <p style="font-size:29px">בחרו נושא שמעניין אתכם - <span class="r">לא חייב</span> בעיות מילוליות. לא מבקשים מערך. חושבים יחד עם הבינה:</p>
+      <div class="steps">
+        <div class="step f"><div class="k">01</div><p>ארבע דרכים יצירתיות ללמד את הנושא, ללומדים שונים</p></div>
+        <div class="step f hl"><div class="k">02</div><p>איפה התלמידים לומדים עם הבינה, ולא דרכה?</p></div>
+      </div>
+      <p class="f" style="font-size:27px">ובדף: בנק רעיונות - <b>מצא את הטעות</b>, <b>בוחרים את ההקשר</b>.</p>
+    </div>
+    <div class="qrcol f" style="width:200px">
+      <div class="qrbox"><img src="assets/qr-app.png" alt="ברקוד לדף ההתנסויות"></div>
+      <div class="where"><span>בדף:</span><b>התנסות 4</b></div>
+    </div>
+  </div>
+</section>
+
+<!-- 16 the question -->
+<section class="slide mid">
+  <div class="fill" style="align-items:center">
+    <div class="kicker">דקה בזוג, בלי מחשב</div>
+    <p class="huge" style="max-width:1050px">כשאתם מתכננים שיעור,<br>אתם בכלל חושבים על <span class="r">מיומנויות</span>?</p>
+  </div>
+</section>
+
+<!-- 17 experience 5 -->
+<section class="slide">
+  <div class="kicker">התנסות 5 &middot; אתם המורים &middot; ממשיכים באותה שיחה <span class="tm">כ-12 דקות</span></div>
+  <h2 style="margin-bottom:10px">ועכשיו המיומנויות</h2>
+  <p style="font-size:25px;margin-bottom:16px">מדביקים את <b>כרטיס המיומנויות</b> מהדף, או מעלים את <b>מסמך המיומנויות הבית ספרי</b>. ואז - <span class="r">שאלה אחת בכל פעם</span>: קוראים, מגיבים, וממשיכים.</p>
+  <div style="display:flex;gap:22px;flex:1;min-height:0;align-items:flex-start">
+    <div class="grid5" style="flex:1">
+      <div class="fc f"><div class="k">01</div><p>אילו מיומנויות כבר בשיעור, ואילו לא?</p></div>
+      <div class="fc f"><div class="k">02</div><p>איך לקדם אחת מהן, בלי להוסיף זמן?</p></div>
+      <div class="fc f"><div class="k">03</div><p>איך מדברים עליה עם התלמידים?</p></div>
+      <div class="fc f"><div class="k">04</div><p>איך השימוש בבינה מקדם אותה, או פוגע בה?</p></div>
+      <div class="fc f"><div class="k">05</div><p>איך נדע שהיא תורגלה?</p></div>
+    </div>
+    <div class="qrcol f" style="width:170px;align-self:flex-start">
+      <div class="qrbox"><img src="assets/qr-app.png" alt="ברקוד לדף ההתנסויות"></div>
+      <div class="where"><span>בדף:</span><b>התנסות 5</b></div>
+    </div>
+  </div>
+</section>
+
+<!-- 18 sharing -->
+<section class="slide" style="justify-content:center">
+  <div class="kicker">שיתוף &middot; כל זוג, 3 דקות</div>
+  <h2>מה יצא לכם?</h2>
+  <div class="cols" style="align-items:stretch">
+    <div class="qcol f"><span class="n">01</span><p>איזה נושא בחרתם, ומה הרעיון שיצא?</p></div>
+    <div class="qcol f"><span class="n">02</span><p>איפה החשיבה נשארת אצל התלמיד?</p></div>
+    <div class="qcol f"><span class="n">03</span><p>איך תדעו שזה עבד?</p></div>
+  </div>
+  <div class="note f" style="margin-top:30px;font-size:31px;padding:22px 26px;border-right-color:var(--accent);background:var(--accent-pale)"><b>ומשפט אחד מכל אחד:</b> מה אני מנסה בכיתה לפני המפגש הבא, ובאיזו כיתה.</div>
+</section>
+
+<!-- 19 until next time -->
+<section class="slide" style="justify-content:center">
+  <h2>לקראת המפגש הבא</h2>
+  <p style="font-size:29px;margin-bottom:22px">קחו את התובנות של היום לכיתה, ונסו משהו. אפשר בכל אחת מהדרכים:</p>
+  <div class="cols" style="align-items:stretch">
+    <div class="np f"><h4>התלמידים לומדים עם הבינה</h4><p>מורה פרטית, צעד ראשון, בעיה משלי.</p></div>
+    <div class="np f"><h4>אתם מתכננים עם הבינה</h4><p>דרכים יצירתיות ללמד את החומר, ללומדים מגוונים.</p></div>
+    <div class="np f"><h4>אתם מתכננים בעין של מיומנויות</h4><p>איך המיומנות תתורגל, ואיך תדעו שתורגלה.</p></div>
+  </div>
+  <p class="f big" style="margin-top:26px;font-weight:500;text-align:center">לא משנה איזו. העיקר: <span class="r">ליישם משהו</span>, ולבוא עם רשמים ועדויות.</p>
+</section>
+
+<!-- 20 closing statement -->
+<section class="slide mid">
+  <div class="fill" style="align-items:center">
+    <p class="huge" style="max-width:1100px">אותו כלי יכול לחשוב <span class="dim">במקומנו</span>,</p>
+    <p class="huge f" style="max-width:1100px;color:var(--accent-dk)">או איתנו.</p>
+    <div class="rule f" style="margin:26px auto 14px"></div>
+    <p class="f lead dim">ההבדל הוא באופן שבו שואלים.</p>
+  </div>
+</section>
+
+<!-- 21 thanks -->
+<section class="slide">
+  <div style="display:flex;flex:1;align-items:center;gap:60px">
+    <div style="flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px">
+      <img src="assets/logo-1400.png" alt="תום הגלעדי" style="width:420px">
+      <h1 style="font-size:84px">תודה</h1>
+      <p style="font-size:30px">תום הגלעדי</p>
+    </div>
+    <div style="width:470px"><div class="qrbox"><img src="assets/linktree-qr.png" alt="ברקוד ליצירת קשר"></div></div>
+  </div>
+</section>
+
+</div></div>
+<div id="bar"></div><div id="num"></div>
+<div id="help">&larr; קדימה &middot; &rarr; אחורה &middot; F מסך מלא</div>
+
+<script>
+(function(){
+  const deck=document.getElementById('deck'), slides=[...deck.querySelectorAll('.slide')];
+  const bar=document.getElementById('bar'), num=document.getElementById('num');
+  let si=0, fi=0, lockHash=false;
+  // fragments reveal one per click; elements that share data-step reveal together
+  function frags(){
+    const fs=[...slides[si].querySelectorAll('.f')];
+    if(!fs.some(f=>f.dataset.step)) return fs.map(f=>[f]);
+    const m=new Map(); fs.forEach(f=>{ const k=+(f.dataset.step||0); if(!m.has(k)) m.set(k,[]); m.get(k).push(f); });
+    return [...m.keys()].sort((a,b)=>a-b).map(k=>m.get(k));
+  }
+  function render(){
+    slides.forEach((s,i)=>s.classList.toggle('on', i===si));
+    frags().forEach((g,i)=>g.forEach(f=>f.classList.toggle('vis', i<fi)));
+    bar.style.width=((si+1)/slides.length*100)+'%';
+    num.textContent=(si+1)+' / '+slides.length;
+    lockHash=true; location.hash=(si+1); setTimeout(()=>{lockHash=false;},0);
+  }
+  function next(){ if(fi<frags().length){ fi++; } else if(si<slides.length-1){ si++; fi=0; } render(); }
+  function prev(){ if(fi>0){ fi--; } else if(si>0){ si--; fi=frags().length; } render(); }
+  function goto(n){ si=Math.max(0,Math.min(slides.length-1,n)); fi=frags().length; render(); }
+  window.__deck={slides,goto,showAll(n){si=n;fi=frags().length;render();}};
+  // Hebrew deck, read right to left: LEFT = forward, RIGHT = back (Tom, 3.10.2026)
+  document.addEventListener('keydown', e=>{
+    switch(e.key){
+      case 'ArrowLeft': case 'PageDown': case ' ': case 'Enter': e.preventDefault(); next(); break;
+      case 'ArrowRight': case 'PageUp': case 'Backspace': e.preventDefault(); prev(); break;
+      case 'ArrowDown': e.preventDefault(); goto(si+1); break;
+      case 'ArrowUp': e.preventDefault(); goto(si-1); break;
+      case 'Home': e.preventDefault(); goto(0); break;
+      case 'End': e.preventDefault(); goto(slides.length-1); break;
+      case 'f': case 'F': document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen(); break;
+    }
+  });
+  deck.addEventListener('click', e=>{ if(e.target.closest('button,a')) return; next(); });
+  addEventListener('hashchange', ()=>{ if(lockHash) return; const n=parseInt(location.hash.slice(1)); if(n>=1&&n<=slides.length){ si=n-1; fi=0; render(); } });
+  function fit(){ deck.style.transform='scale('+Math.min(innerWidth/1280, innerHeight/720)+')'; }
+  addEventListener('resize', fit); fit();
+  const start=parseInt(location.hash.slice(1)); if(start>=1&&start<=slides.length){ si=start-1; }
+  render();
+})();
+</script>
+</body>
+</html>
