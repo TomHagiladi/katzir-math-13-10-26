@@ -101,6 +101,8 @@ details ul{margin:.2rem 0 0;padding-inline-start:1.3rem}
 nav.toc a.te{background:#FFF1DC;border-color:#F0D3A6}
 nav.toc a.st{background:#EAF4E0;border-color:#CFE3BC}
 nav.toc a.te .n{background:#8A4B00}
+.dl{display:flex;flex-wrap:wrap;align-items:center;gap:.8rem;background:#fff;border:2px solid var(--g);border-radius:14px;padding:.8rem 1rem;margin:.4rem 0 1rem}
+.dl p{margin:0;flex:1;min-width:220px}
 .toast{position:fixed;bottom:1.2rem;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:.6rem 1.3rem;border-radius:999px;font-weight:700;opacity:0;transition:opacity .25s;pointer-events:none;z-index:50}
 .toast.show{opacity:1}
 
@@ -352,10 +354,14 @@ footer{padding:1rem var(--pad) 2.5rem;color:var(--soft);font-size:.9rem}
     <h3 class="p-title">המיומנויות בשיעור - שאלה אחת בכל פעם</h3>
     <p class="explain">לא שופכים על הבינה את כל השאלות בבת אחת. פותחים בהקשר ובשאלה הראשונה, קוראים את התשובה, מגיבים, ורק אז ממשיכים לשאלה הבאה. אפשר גם להוסיף שאלות משלכם.</p>
     <h4 class="qh">פתיחה: ההקשר והשאלה הראשונה</h4>
-    <p class="explain">מדביקים את כרטיס המיומנויות שלמטה, או מעלים לשיחה את מסמך המיומנויות הבית ספרי, אם יש לכם.</p>
+    <p class="explain">בית הספר עובד עם מסמך המיומנויות הלאומי "דמות הבוגרת והבוגר". מורידים אותו ומעלים לשיחה, או מדביקים את כרטיס המיומנויות שלמטה.</p>
+    <div class="dl">
+      <p><b>מיומנויות דמות הבוגרת והבוגר 2020-2030</b><br><span class="explain">משרד החינוך &middot; 22 עמודים</span></p>
+      <a class="btn" href="dmut-haboger-skills-2030.pdf" download="מיומנויות דמות הבוגרת והבוגר 2020-2030.pdf">הורדת המסמך<span class="sr-only"> - קובץ פי-די-אף</span></a>
+    </div>
     <label class="sr-only" for="p-e5">פתיחה: ההקשר והשאלה הראשונה</label>
     <textarea class="prompt" id="p-e5">עכשיו נעבור למיומנויות. אלה המיומנויות שבית הספר שלנו מקדם השנה:
-[כאן מדביקים את כרטיס המיומנויות, או מעלים את מסמך המיומנויות הבית ספרי]
+[כאן מדביקים את כרטיס המיומנויות, או מעלים את מסמך דמות הבוגרת והבוגר]
 
 וזה השיעור שאני מתכנן/ת, כולל הרעיון שבחרנו קודם:
 [תכנית השיעור או הנושא]
@@ -397,7 +403,7 @@ footer{padding:1rem var(--pad) 2.5rem;color:var(--soft);font-size:.9rem}
 
   <div class="card">
     <h3 class="p-title">כרטיס המיומנויות</h3>
-    <p class="explain">ההגדרות מתוך שאלון המיפוי של בית הספר. אם יש לכם את מסמך המיומנויות הבית ספרי, אפשר להשתמש בו במקום.</p>
+    <p class="explain">גרסה מקוצרת של מסמך דמות הבוגרת והבוגר, כפי שהופיעה בשאלון המיפוי. אפשר להדביק אותה, או להעלות את המסמך המלא (הכפתור למעלה).</p>
     <label class="sr-only" for="p-skills">כרטיס המיומנויות</label>
     <textarea class="prompt" id="p-skills">המיומנויות שבית הספר שלנו מקדם השנה:
 אוריינות מתמטית: יישום ידע כמותי וחישוב לפתרון בעיות וארגון נתונים.
